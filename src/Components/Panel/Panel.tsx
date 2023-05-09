@@ -1,5 +1,5 @@
 
-import BlueCap from '../BlueCap';
+import {BlueCap} from '../BlueCap';
 import styles from './Panel.module.css';
 
 export type PanelProps = {
