@@ -1,4 +1,4 @@
-import { Panel, PanelProps } from './Panel'
+import { Panel, PanelProps } from '../Panel'
 import styles from './Title.module.css'
 
 type TitleProps = PanelProps & {
