@@ -11,7 +11,7 @@ function RadioMenu(prop: RadioMenuProps) {
     const reset = () => {
         setSelected(null);
     }
-    const select = (s: string) => () => { //TODO
+    const toSetSelected = (s: string) => () => { //TODO
         setSelected(s);
     }
     
@@ -21,7 +21,7 @@ function RadioMenu(prop: RadioMenuProps) {
         <div key={e} className={styles.element}>
             <input type="radio" id={e} className={styles.input} name={prop.summary} 
             checked={selected != null && selected === e} 
-            onClick={select(e)}/>
+            onClick={toSetSelected(e)}/>
             <label className={styles.inputlabel} htmlFor={e}>{e}</label>
         </div>)}
         <div className={styles.removeselect} onClick={reset}>선택해제</div>
