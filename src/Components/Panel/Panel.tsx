@@ -1,7 +1,8 @@
-import BlueCap from './BlueCap';
+
+import BlueCap from '../BlueCap';
 import styles from './Panel.module.css';
 
-type PanelProps = {
+export type PanelProps = {
     cap?: {height: number, text?: string}
     children?: JSX.Element[] | JSX.Element,
 }
