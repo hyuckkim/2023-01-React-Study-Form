@@ -12,7 +12,7 @@ function RadioMenu(prop: RadioMenuProps) {
     const reset = () => {
         setSelected(null);
     }
-    const toSetSelected = (s: string) => () => { //TODO
+    const toSetSelected = (s: string) => () => {
         setSelected(s);
     }
     
