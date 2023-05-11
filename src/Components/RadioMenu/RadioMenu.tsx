@@ -3,8 +3,9 @@ import styles from './RadioMenu.module.css';
 import { Panel, PanelProps } from '../Panel';
 
 type RadioMenuProps = PanelProps & {
-    summary?: string,
+    summary: string,
     items: string[],
+    //other?: true, TODO
     onValuechange?: (value: string | null) => void
 }
 
@@ -28,7 +29,7 @@ function RadioMenu(prop: RadioMenuProps) {
     return (
         <Panel cap={prop.cap}>
             <form className={styles.root}>
-                {prop.summary && <div>{prop.summary}</div>}
+                <div>{prop.summary}</div>
                 {prop.items.map (e => 
                 <div key={e} className={styles.element}>
                     <input type="radio" id={e} className={styles.input} name={prop.summary} 
@@ -36,7 +37,7 @@ function RadioMenu(prop: RadioMenuProps) {
                     onClick={toSetSelected(e)}/>
                     <label className={styles.inputlabel} htmlFor={e}>{e}</label>
                 </div>)}
-                <div className={styles.removeselect} onClick={reset}>선택해제</div>
+                {selected != null && <div className={styles.removeselect} onClick={reset}>선택해제</div>}
             </form>
         </Panel>
         )
