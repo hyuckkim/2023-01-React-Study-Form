@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './InputField.module.css';
 import { Panel, PanelProps } from '../Panel';
+import { SlicedString } from '../SlicedString';
 
 type InputFieldProps = PanelProps & {
     summary: string,
@@ -11,7 +12,7 @@ function InputField(prop: InputFieldProps) {
     return (
         <Panel cap={prop.cap}>
             <div className={styles.root}>
-                <div>{prop.summary}</div>
+                <div><SlicedString text={prop.summary}/></div>
                 <input className={styles.input} onChange={(e) => {
                     if (prop.onValuechange != undefined) {
                         prop.onValuechange(e.target.value);

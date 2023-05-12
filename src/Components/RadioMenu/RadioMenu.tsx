@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styles from './RadioMenu.module.css';
 import { Panel, PanelProps } from '../Panel';
+import { SlicedString } from '../SlicedString';
 
 type RadioMenuProps = PanelProps & {
     summary: string,
@@ -29,7 +30,7 @@ function RadioMenu(prop: RadioMenuProps) {
     return (
         <Panel cap={prop.cap}>
             <div className={styles.root}>
-                <div>{prop.summary}</div>
+                <div><SlicedString text={prop.summary} /></div>
                 {prop.items.map (e => 
                 <div key={e} className={styles.element}>
                     <input type="radio" id={e} className={styles.input} name={prop.summary} 
