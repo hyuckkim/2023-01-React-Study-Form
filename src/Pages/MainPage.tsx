@@ -1,4 +1,4 @@
-import {Title, RadioMenu, InputField, FormPage, NavButton} from "@/Components";
+import {Title, RadioMenu, InputField, FormPage, Label, NavButton} from "@/Components";
 
 import styles from './MainPage.module.css';
 import { useState } from "react";
@@ -28,6 +28,11 @@ function MainPage() {
                     onValuechange={(value) => {setFormDataIndex(4, value)}}/>
                     <InputField summary="전화번호" onValuechange={(value) => {setFormDataIndex(5, value)}}/>
                     <InputField summary="이메일" onValuechange={(value) => {setFormDataIndex(6, value)}}/>
+                </FormPage>
+                <FormPage visible={page == 1}>
+                    <Label summary="GDSC Member의 일원으로 임하는 자세에 대해서 설명해 주세요.
+                    이 활동에 얼마나 집중할 수 있는지, GDSC 활동으로 이루고 싶은 것들을 설명해 주세요."
+                        cap={{height: 48, text:"기본 정보 관련 질문"}} />
                 </FormPage>
                 <NavButton leftClick={() => setPage(page - 1)} rightClick={() => setPage(page + 1)} submitClick={() => console.log(formData)}
                     isFirstPage={page == 0} isLastPage={page == 1}/>
