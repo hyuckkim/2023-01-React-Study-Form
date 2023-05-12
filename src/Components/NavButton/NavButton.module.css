@@ -28,3 +28,33 @@
 .button:disabled {
     background-color: #fff;
 }
+.specialbutton {
+    border: none;
+    color: #fff;
+    background-color: #0084df;
+
+    width: 76px;
+    height: 36px;
+
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+
+    font-size: 16px;
+    margin-right: 13px;
+    cursor: pointer;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4);
+}
+
+.specialbutton:hover {
+    background-color: #148ee2;
+}
+
+.specialbutton:active {
+    background-color: #60b3eb;
+}
+
+.specialbutton:disabled {
+    background-color: #0084df;
+}

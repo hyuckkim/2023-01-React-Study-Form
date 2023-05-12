@@ -29,9 +29,8 @@ function MainPage() {
                     <InputField summary="전화번호" onValuechange={(value) => {setFormDataIndex(5, value)}}/>
                     <InputField summary="이메일" onValuechange={(value) => {setFormDataIndex(6, value)}}/>
                 </FormPage>
-                <NavButton leftClick={() => setPage(page - 1)} rightClick={() => setPage(page + 1)}
-                    leftEnabled={page > 0} rightEnabled={page < 1}/>
-                <button onClick={() => {console.log(formData)}}>제출</button>
+                <NavButton leftClick={() => setPage(page - 1)} rightClick={() => setPage(page + 1)} submitClick={() => console.log(formData)}
+                    isFirstPage={page == 0} isLastPage={page == 1}/>
             </div>
         </div>
     )
