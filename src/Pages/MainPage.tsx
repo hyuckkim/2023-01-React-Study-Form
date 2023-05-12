@@ -1,4 +1,4 @@
-import {Title, RadioMenu, InputField, FormPage} from "@/Components";
+import {Title, RadioMenu, InputField, FormPage, NavButton} from "@/Components";
 
 import styles from './MainPage.module.css';
 import { useState } from "react";
@@ -29,7 +29,8 @@ function MainPage() {
                     <InputField summary="전화번호" onValuechange={(value) => {setFormDataIndex(5, value)}}/>
                     <InputField summary="이메일" onValuechange={(value) => {setFormDataIndex(6, value)}}/>
                 </FormPage>
-                
+                <NavButton leftClick={() => setPage(page - 1)} rightClick={() => setPage(page + 1)}
+                    leftEnabled={page > 0} rightEnabled={page < 1}/>
                 <button onClick={() => {console.log(formData)}}>제출</button>
             </div>
         </div>
