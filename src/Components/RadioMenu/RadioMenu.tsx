@@ -34,7 +34,7 @@ function RadioMenu(prop: RadioMenuProps) {
                 <div key={e} className={styles.element}>
                     <input type="radio" id={e} className={styles.input} name={prop.summary} 
                     checked={selected != null && selected === e} 
-                    onClick={toSetSelected(e)}/>
+                    onClick={toSetSelected(e)} readOnly/>
                     <label className={styles.inputlabel} htmlFor={e}>{e}</label>
                 </div>)}
                 {selected != null && <div className={styles.removeselect} onClick={reset}>선택해제</div>}
