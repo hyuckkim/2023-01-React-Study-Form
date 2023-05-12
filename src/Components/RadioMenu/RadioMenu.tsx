@@ -28,7 +28,7 @@ function RadioMenu(prop: RadioMenuProps) {
     
     return (
         <Panel cap={prop.cap}>
-            <form className={styles.root}>
+            <div className={styles.root}>
                 <div>{prop.summary}</div>
                 {prop.items.map (e => 
                 <div key={e} className={styles.element}>
@@ -38,7 +38,7 @@ function RadioMenu(prop: RadioMenuProps) {
                     <label className={styles.inputlabel} htmlFor={e}>{e}</label>
                 </div>)}
                 {selected != null && <div className={styles.removeselect} onClick={reset}>선택해제</div>}
-            </form>
+            </div>
         </Panel>
         )
 }

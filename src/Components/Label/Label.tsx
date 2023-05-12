@@ -7,9 +7,9 @@ type LabelProps = PanelProps & {
 
 function Label(prop: LabelProps) {
     return <Panel cap={prop.cap}>
-        <form className={styles.root}>
+        <div className={styles.root}>
             {prop.summary}
-        </form>
+        </div>
     </Panel>
 }
 

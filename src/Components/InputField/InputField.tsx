@@ -10,14 +10,14 @@ type InputFieldProps = PanelProps & {
 function InputField(prop: InputFieldProps) {
     return (
         <Panel cap={prop.cap}>
-            <form className={styles.root}>
+            <div className={styles.root}>
                 <div>{prop.summary}</div>
                 <input className={styles.input} onChange={(e) => {
                     if (prop.onValuechange != undefined) {
                         prop.onValuechange(e.target.value);
                     }
                 }}/>
-            </form>
+            </div>
         </Panel>
         )
 }
