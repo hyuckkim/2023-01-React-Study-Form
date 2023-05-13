@@ -1,10 +1,10 @@
-import {Title, RadioMenu, InputField, FormPage, Label, NavButton} from "@/Components";
+import {Title, RadioMenu, InputField, FormPage, Label, NavButton, CheckBox} from "@/Components";
 
 import styles from './MainPage.module.css';
 import { useState } from "react";
 
 function MainPage() {
-    const [formData, setFormData] = useState([0,0,0,0,0,0,0]);
+    const [formData, setFormData] = useState(new Array(23));
     const [page, setPage] = useState(0);
     function setFormDataIndex(idx: number, value: any) {
         const data = [...formData];
@@ -31,10 +31,34 @@ function MainPage() {
                 </FormPage>
                 <FormPage visible={page == 1}>
                     <Label summary="GDSC Member의 일원으로 임하는 자세에 대해서 설명해 주세요. \n이 활동에 얼마나 집중할 수 있는지, GDSC 활동으로 이루고 싶은 것들을 설명해 주세요."
-                        cap={{height: 48, text:"기본 정보 관련 질문"}} />
+                    cap={{height: 48, text:"기본 정보 관련 질문"}} />
+                    <RadioMenu summary="3개월 동안 꾸준하게 활동 가능 한가요? (학기중과 방학 모두 포함)" items={["예", "아니오"]}
+                    onValuechange={(value) => {setFormDataIndex(8, value)}}/>
+                    <RadioMenu summary="1주일에 투자할 수 있는 시간을 선택해 주세요" items={["1시간 이내", "3시간 이내", "5시간 이내", "10시간 이내"]}
+                    onValuechange={(value) => {setFormDataIndex(9, value)}}/>
+                    <RadioMenu summary="매월 월요일 10시 정기 세미나 참여 여부 (1시간 이내, 카메라 필수)" items={["네", "아니오"]}
+                    onValuechange={(value) => {setFormDataIndex(10, value)}}/>
+                    <InputField summary="GDSC 일반 멤버로 지원하게 된 지원 동기를 작성해 주세요 \n(700자내외)" onValuechange={(value) => {setFormDataIndex(11, value)}}/>
+                    <InputField summary="동아리 또는 커뮤니티 또는 스터디를 운영하거나 참여한 경험이 있다면 적어 주세요(선택)" onValuechange={(value) => {setFormDataIndex(12, value)}}/>
+                    <InputField summary="팀을 이끌어보거나 다른 사람들에게 무엇을 가르쳐준 경험에 대해 이야기 해 주세요." onValuechange={(value) => {setFormDataIndex(13, value)}}/>
+                    <InputField summary="GDSC 활동으로 이루고 싶은 것들을 간단히 설명해주세요" onValuechange={(value) => {setFormDataIndex(14, value)}}/>
+                    <InputField summary="GDSC 활동 중에 어떤 것이 가장 기대되나요?" onValuechange={(value) => {setFormDataIndex(15, value)}}/>
+                </FormPage>
+                <FormPage visible={page == 2}>
+                    <Label summary="관심 있는 기술 분야와 프로젝트 진행 경험 그리고 본인의 갈등과 문제 해결방법에 대해서 설명해 주세요"
+                    cap={{height: 48, text:"기술 관련 질문"}} />
+                    <CheckBox summary="다룰 줄 아는 언어를 선택해주세요" items={["C", "C++", "C#", "Python", "Javascript", "Kotlin", "PHP", "Java"]}
+                    onValuechange={(value) => {setFormDataIndex(16, value)}}/>
+                    <CheckBox summary="GDSC 스터디 참여 희망 분야(없다면 기타를 선택해 주세요)" items={["Android (자바 또는 코틀린 지식 필수)", "IOS", "Spring or Spring Boot (자바 지식 필수)", "Front-End", "Go - Backend (다른 언어 경험 필수)", "Computer Science", "DevOps"]}
+                    onValuechange={(value) => {setFormDataIndex(17, value)}}/>
+                    <InputField summary="희망 스터디와 관련된 공부 또는 프로젝트를 해본 경험이 있다면 적어주세요" onValuechange={(value) => {setFormDataIndex(18, value)}}/>
+                    <InputField summary="가장 관심 있는 기술 분야와 이유는 무엇인가요?\n그리고 이 기술에 대한 어떤 경험을 하셨나요?" onValuechange={(value) => {setFormDataIndex(19, value)}}/>
+                    <InputField summary="프로젝트를 진행해 보신 적이 있다면 어떠한 갈등 상황 또는 문제점이 발생했고 이를 어떻게 해결하셨나요?" onValuechange={(value) => {setFormDataIndex(20, value)}}/>
+                    <InputField summary="Github, 블로그, 포트폴리오 주소 등 (선택)" onValuechange={(value) => {setFormDataIndex(21, value)}}/>
+                    <InputField summary="지원서에 담지 못한 내용이 있다면 적어주세요(선택)" onValuechange={(value) => {setFormDataIndex(22, value)}}/>
                 </FormPage>
                 <NavButton leftClick={() => setPage(page - 1)} rightClick={() => setPage(page + 1)} submitClick={() => console.log(formData)}
-                    isFirstPage={page == 0} isLastPage={page == 1}/>
+                    isFirstPage={page == 0} isLastPage={page == 2}/>
             </div>
         </div>
     )
