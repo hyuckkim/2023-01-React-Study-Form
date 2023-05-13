@@ -6,12 +6,14 @@ import { SlicedString } from '../SlicedString';
 type RadioMenuProps = PanelProps & {
     summary: string,
     items: string[],
-    //other?: true, TODO
+    other?: true | boolean,
     onValuechange?: (value: string | null) => void
 }
 
 function RadioMenu(prop: RadioMenuProps) {
     const [selected, setSelected] = useState<string | null>(null);
+    const [etcSelected, setEtcSelected] = useState(false);
+    const [etcValue, setEtcValue] = useState("");
     const reset = () => {
         setSelected(null);
 
@@ -21,10 +23,22 @@ function RadioMenu(prop: RadioMenuProps) {
     }
     const toSetSelected = (s: string) => () => {
         setSelected(s);
+        setEtcSelected(false);
 
         if (prop.onValuechange != undefined) {
             prop.onValuechange(s);
         }
+    }
+    const toEtcSelected = () => () => {
+        setEtcSelected(true);
+        
+        if (prop.onValuechange != undefined) {
+            prop.onValuechange(etcValue);
+        }
+    }
+    const etcValueChanged = (s: string) => {
+        setEtcValue(s);
+        toEtcSelected()();
     }
     
     return (
@@ -38,6 +52,15 @@ function RadioMenu(prop: RadioMenuProps) {
                     onClick={toSetSelected(e)} readOnly/>
                     <label className={styles.inputlabel} htmlFor={e}>{e}</label>
                 </div>)}
+                {prop.other == true && <div className={styles.element}>
+                    <input type="radio" id={'기타_' + prop.summary} className={styles.input} name={prop.summary} 
+                    checked={etcSelected} 
+                    onClick={toEtcSelected()} readOnly/>
+                    <label className={styles.inputlabel} htmlFor={'기타_' + prop.summary}>기타:</label>
+                    <input className={styles.etcinput} onChange={(e) => {
+                        etcValueChanged(e.target.value);
+                    }}/>
+                </div>}
                 {selected != null && <div className={styles.removeselect} onClick={reset}>선택해제</div>}
             </div>
         </Panel>

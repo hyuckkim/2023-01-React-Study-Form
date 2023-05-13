@@ -24,3 +24,14 @@
     align-self: flex-end;
     cursor: pointer;
 }
+
+.etcinput {
+    border: none;
+    border-bottom: 2px solid lightgray;
+    font-size: 16px;
+    margin-left: 20px;
+    flex-grow: 1;
+}
+.etcinput:focus {
+    outline: none;
+}
