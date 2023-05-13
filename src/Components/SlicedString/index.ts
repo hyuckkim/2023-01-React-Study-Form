@@ -1,1 +1,1 @@
-export {default as SlicedString} from './Slicedstring';
+export {default as SlicedString} from './SlicedString';
