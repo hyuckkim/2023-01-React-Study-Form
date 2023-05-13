@@ -6,14 +6,14 @@ import { SlicedString } from '../SlicedString';
 type RadioMenuProps = PanelProps & {
     summary: string,
     items: string[],
+    value?: string,
     other?: true | boolean,
     onValuechange?: (value: string | null) => void
 }
 
 function RadioMenu(prop: RadioMenuProps) {
-    const [selected, setSelected] = useState<string | null>(null);
-    const [etcSelected, setEtcSelected] = useState(false);
-    const [etcValue, setEtcValue] = useState("");
+    const [selected, setSelected] = useState<string | null>(prop.value ?? "");
+    const [etcValue, setEtcValue] = useState(!prop.items.includes(prop.value ?? "") ? prop.value ?? "" : "");
     const reset = () => {
         setSelected(null);
 
@@ -23,21 +23,20 @@ function RadioMenu(prop: RadioMenuProps) {
     }
     const toSetSelected = (s: string) => () => {
         setSelected(s);
-        setEtcSelected(false);
 
         if (prop.onValuechange != undefined) {
             prop.onValuechange(s);
         }
     }
     const toEtcSelected = () => () => {
-        setEtcSelected(true);
-        
+        setSelected(etcValue);
         if (prop.onValuechange != undefined) {
             prop.onValuechange(etcValue);
         }
     }
     const etcValueChanged = (s: string) => {
         setEtcValue(s);
+        setSelected(s);
         toEtcSelected()();
     }
     
@@ -54,7 +53,7 @@ function RadioMenu(prop: RadioMenuProps) {
                 </div>)}
                 {prop.other == true && <div className={styles.element}>
                     <input type="radio" id={'기타_' + prop.summary} className={styles.input} name={prop.summary} 
-                    checked={etcSelected} 
+                    checked={selected == etcValue} 
                     onClick={toEtcSelected()} readOnly/>
                     <label className={styles.inputlabel} htmlFor={'기타_' + prop.summary}>기타:</label>
                     <input className={styles.etcinput} onChange={(e) => {

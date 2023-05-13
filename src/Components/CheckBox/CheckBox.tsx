@@ -7,14 +7,17 @@ import styles from './CheckBox.module.css';
 type CheckBoxProps = PanelProps & {
     summary: string,
     items: string[],
+    value?: string[],
     other?: true | boolean,
     onValuechange?: (value: string[] | null) => void
 }
 
 function CheckBox(prop: CheckBoxProps) {
-    const [selected, setSelected] = useState<string[] | null>(null);
+    const [selected, setSelected] = useState<string[] | null>(prop.value ?? null);
     const [etcSelected, setEtcSelected] = useState(false);
-    const [etcValue, setEtcValue] = useState("");
+    const [etcValue, setEtcValue] = useState(prop.value == undefined ? "" 
+        : prop.items.length != prop.value.length ? prop.value.filter(x => !prop.items.includes(x))[0] : "");
+    
     const toSetSelected = (s: string) => () => {
         const newSelected = [...selected ?? []];
         if (newSelected.includes(s)) {
@@ -25,7 +28,6 @@ function CheckBox(prop: CheckBoxProps) {
         }
 
         setSelected(newSelected);
-        if (etcSelected) {newSelected.push(etcValue)}
 
         if (prop.onValuechange != undefined) {
             prop.onValuechange(newSelected);
@@ -35,17 +37,38 @@ function CheckBox(prop: CheckBoxProps) {
         setEtcSelected(select);
 
         const newSelected = [...selected ?? []];
-        if (etcSelected) {newSelected.push(etcValue)}
+        if (select) {
+            if (etcValue != '') newSelected.push(etcValue);
+        }
+        else {
+            if (newSelected.includes(etcValue)) {
+                newSelected.splice(newSelected.indexOf(etcValue), 1);
+            }
+        }
+        setSelected(newSelected);
 
         if (prop.onValuechange != undefined) {
             prop.onValuechange(newSelected);
         }
     }
     const etcValueChanged = (s: string) => {
+        setEtcSelected(true);
+        
+        const newSelected = [...selected ?? []];
+        if (newSelected.includes(etcValue)) {
+            newSelected[newSelected.indexOf(etcValue)] = s;
+        }
+        else {
+            if (s != '') newSelected.push(s);
+        }
+        setSelected(newSelected);
         setEtcValue(s);
-        toEtcSelected(true)();
+        
+        if (prop.onValuechange != undefined) {
+            prop.onValuechange(newSelected);
+        }
     }
-    
+    console.log(etcValue);
     return (
         <Panel cap={prop.cap}>
             <div className={styles.root}>
@@ -59,10 +82,10 @@ function CheckBox(prop: CheckBoxProps) {
                 </div>)}
                 {prop.other == true && <div className={styles.element}>
                     <input type="checkbox" id={'기타_' + prop.summary} className={styles.input} name={prop.summary} 
-                    checked={etcSelected} 
+                    checked={selected != null && etcValue != '' && selected.includes(etcValue)} 
                     onClick={toEtcSelected(!etcSelected)} readOnly/>
                     <label className={styles.inputlabel} htmlFor={'기타_' + prop.summary}>기타:</label>
-                    <input className={styles.etcinput} onChange={(e) => {
+                    <input className={styles.etcinput} value={etcValue} onChange={(e) => {
                         etcValueChanged(e.target.value);
                     }}/>
                 </div>}
