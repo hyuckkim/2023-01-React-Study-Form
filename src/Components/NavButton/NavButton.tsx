@@ -10,7 +10,7 @@ type NavButtonProps = {
 }
 
 function NavButton(prop: NavButtonProps) {
-    const leftButton = <button onClick={prop.leftClick} disabled={prop.isFirstPage} className={styles.button}>뒤로</button>
+    const leftButton = prop.isFirstPage ?  <></> : <button onClick={prop.leftClick} className={styles.button}>뒤로</button>;
     const rightButton = prop.isLastPage ? 
         <button onClick={prop.submitClick} className={styles.specialbutton}>제출</button> : 
         <button onClick={prop.rightClick} className={styles.button}>다음</button> ;
