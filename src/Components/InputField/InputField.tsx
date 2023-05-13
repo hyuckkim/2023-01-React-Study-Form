@@ -13,11 +13,13 @@ function InputField(prop: InputFieldProps) {
         <Panel cap={prop.cap}>
             <div className={styles.root}>
                 <div><SlicedString text={prop.summary}/></div>
-                <input className={styles.input} placeholder='내 답변' onChange={(e) => {
-                    if (prop.onValuechange != undefined) {
-                        prop.onValuechange(e.target.value);
-                    }
-                }}/>
+                <div className={styles.inputcase}>
+                    <input className={styles.input} placeholder='내 답변' onChange={(e) => {
+                        if (prop.onValuechange != undefined) {
+                            prop.onValuechange(e.target.value);
+                        }
+                    }}/>
+                </div>
             </div>
         </Panel>
         )
