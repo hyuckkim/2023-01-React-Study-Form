@@ -34,7 +34,7 @@ function MainPage() {
                     cap={{height: 48, text:"기본 정보 관련 질문"}} />
                     <RadioMenu summary="3개월 동안 꾸준하게 활동 가능 한가요? (학기중과 방학 모두 포함)" items={["예", "아니오"]}
                     onValuechange={(value) => {setFormDataIndex(8, value)}}/>
-                    <RadioMenu summary="1주일에 투자할 수 있는 시간을 선택해 주세요" items={["1시간 이내", "3시간 이내", "5시간 이내", "10시간 이내"]}
+                    <RadioMenu summary="1주일에 투자할 수 있는 시간을 선택해 주세요" items={["1시간 이내", "3시간 이내", "5시간 이내", "10시간 이내"]} other
                     onValuechange={(value) => {setFormDataIndex(9, value)}}/>
                     <RadioMenu summary="매월 월요일 10시 정기 세미나 참여 여부 (1시간 이내, 카메라 필수)" items={["네", "아니오"]}
                     onValuechange={(value) => {setFormDataIndex(10, value)}}/>
@@ -47,9 +47,9 @@ function MainPage() {
                 <FormPage visible={page == 2}>
                     <Label summary="관심 있는 기술 분야와 프로젝트 진행 경험 그리고 본인의 갈등과 문제 해결방법에 대해서 설명해 주세요"
                     cap={{height: 48, text:"기술 관련 질문"}} />
-                    <CheckBox summary="다룰 줄 아는 언어를 선택해주세요" items={["C", "C++", "C#", "Python", "Javascript", "Kotlin", "PHP", "Java"]}
+                    <CheckBox summary="다룰 줄 아는 언어를 선택해주세요" items={["C", "C++", "C#", "Python", "Javascript", "Kotlin", "PHP", "Java"]} other
                     onValuechange={(value) => {setFormDataIndex(16, value)}}/>
-                    <CheckBox summary="GDSC 스터디 참여 희망 분야(없다면 기타를 선택해 주세요)" items={["Android (자바 또는 코틀린 지식 필수)", "IOS", "Spring or Spring Boot (자바 지식 필수)", "Front-End", "Go - Backend (다른 언어 경험 필수)", "Computer Science", "DevOps"]}
+                    <CheckBox summary="GDSC 스터디 참여 희망 분야(없다면 기타를 선택해 주세요)" items={["Android (자바 또는 코틀린 지식 필수)", "IOS", "Spring or Spring Boot (자바 지식 필수)", "Front-End", "Go - Backend (다른 언어 경험 필수)", "Computer Science", "DevOps"]} other
                     onValuechange={(value) => {setFormDataIndex(17, value)}}/>
                     <InputField summary="희망 스터디와 관련된 공부 또는 프로젝트를 해본 경험이 있다면 적어주세요" onValuechange={(value) => {setFormDataIndex(18, value)}}/>
                     <InputField summary="가장 관심 있는 기술 분야와 이유는 무엇인가요?\n그리고 이 기술에 대한 어떤 경험을 하셨나요?" onValuechange={(value) => {setFormDataIndex(19, value)}}/>
