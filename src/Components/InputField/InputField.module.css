@@ -13,7 +13,11 @@
     border: none;
     border-bottom: 2px solid lightgray;
     font-size: 16px;
+    flex-grow: 1;
 }
 .input:focus {
     outline: none;
+}
+.inputcase {
+    display: flex;
 }
