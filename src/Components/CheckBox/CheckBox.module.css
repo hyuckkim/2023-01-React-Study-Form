@@ -1,0 +1,26 @@
+.root {
+    display: flex;
+    flex-direction: column;
+}
+
+.root > * {
+    padding: 10px 0;
+    align-items: center;
+}
+.element {
+    display: flex;
+}
+.input {
+    width: 20px;
+    height: 20px;
+}
+.inputlabel {
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    text-indent: 15px;
+}
+.removeselect {
+    align-self: flex-end;
+    cursor: pointer;
+}

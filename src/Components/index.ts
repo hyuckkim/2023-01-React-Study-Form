@@ -7,3 +7,4 @@ export {InputField} from './InputField';
 export {FormPage} from './FormPage';
 export {NavButton} from './NavButton';
 export {Label} from './Label';
+export {CheckBox} from './CheckBox';
