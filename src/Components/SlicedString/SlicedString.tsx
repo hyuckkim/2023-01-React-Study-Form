@@ -1,3 +1,5 @@
+import React from "react";
+
 type SlicedStringProps = {
     text: string,
 }
@@ -7,9 +9,9 @@ function SlicedString(prop: SlicedStringProps) {
     return <span>
         {split.map((item, index) => {
             if (index === split.length - 1) 
-                return item
+                return <React.Fragment key={index}>{item}</React.Fragment>
             else 
-                return (<>{item}<br/></>)
+                return <React.Fragment key={index}>{item}<br/></React.Fragment>
         })}
     </span>
 }
