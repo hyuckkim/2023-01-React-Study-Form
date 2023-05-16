@@ -1,10 +1,10 @@
 
-export {Title} from './Title';
-export {BlueCap} from './BlueCap';
-export {Panel} from './Panel';
-export {RadioMenu} from './RadioMenu';
-export {InputField} from './InputField';
-export {FormPage} from './FormPage';
-export {NavButton} from './NavButton';
-export {Label} from './Label';
-export {CheckBox} from './CheckBox';
+export { Title } from './Title'
+export { BlueCap } from './BlueCap'
+export { Panel } from './Panel'
+export { RadioMenu } from './RadioMenu'
+export { InputField } from './InputField'
+export { FormPage } from './FormPage'
+export { NavButton } from './NavButton'
+export { Label } from './Label'
+export { CheckBox } from './CheckBox'

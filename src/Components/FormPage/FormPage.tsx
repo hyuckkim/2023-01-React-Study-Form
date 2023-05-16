@@ -1,10 +1,12 @@
-type FormPageProps = {
-    children?: JSX.Element[] | JSX.Element,
-    visible?: boolean,
+import React from 'react'
+
+interface FormPageProps {
+  children?: JSX.Element[] | JSX.Element
+  visible?: boolean
 }
 
-function FormPage(prop: FormPageProps) {
-    return <>{prop.visible == undefined != prop.visible && prop.children}</>
+function FormPage (prop: FormPageProps): JSX.Element {
+  return <>{(prop.visible ?? false) && prop.children}</>
 }
 
-export default FormPage;
+export default FormPage

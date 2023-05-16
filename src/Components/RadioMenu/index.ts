@@ -1,1 +1,1 @@
-export {default as RadioMenu} from './RadioMenu';
+export { default as RadioMenu } from './RadioMenu'

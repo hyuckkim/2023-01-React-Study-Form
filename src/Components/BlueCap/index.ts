@@ -1,1 +1,1 @@
-export {default as BlueCap} from './BlueCap';
+export { default as BlueCap } from './BlueCap'

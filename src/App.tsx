@@ -1,7 +1,7 @@
-import { MainPage } from "@/Pages"
+import { MainPage } from '@/Pages'
 
-function App() {
- return <MainPage/>
+function App () {
+  return <MainPage/>
 }
 
 export default App
