@@ -1,0 +1,1 @@
+export { getMockJsonData } from './MockJsonData'

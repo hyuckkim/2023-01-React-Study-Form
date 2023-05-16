@@ -4,12 +4,3 @@
     display: flex;
     flex-direction: column;
 }
-
-.contentmenu {
-    margin: 0 calc(50% - 319px);
-    max-width: 638px;
-}
-.contentmenu > * {
-    margin: 12px 0 0 0;
-    border-radius: 10px;
-}

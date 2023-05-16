@@ -67,7 +67,7 @@ function CheckBox (prop: CheckBoxProps): JSX.Element {
       prop.onValuechange(newSelected)
     }
   }
-  console.log(etcValue)
+
   return (
   <Panel cap={prop.cap}>
     <div className={styles.root}>
