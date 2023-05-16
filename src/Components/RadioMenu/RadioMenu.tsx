@@ -12,7 +12,7 @@ type RadioMenuProps = PanelProps & {
 }
 
 function RadioMenu(prop: RadioMenuProps) {
-    const [selected, setSelected] = useState<string | null>(prop.value ?? "");
+    const [selected, setSelected] = useState<string | null>(prop.value ?? null);
     const [etcValue, setEtcValue] = useState(!prop.items.includes(prop.value ?? "") ? prop.value ?? "" : "");
     const reset = () => {
         setSelected(null);
