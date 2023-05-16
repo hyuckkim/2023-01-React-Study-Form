@@ -29,55 +29,56 @@ function JsonForm (prop: JsonFormProps): JSX.Element {
 
     setData(newdatas)
   }
-  console.log(jsonData)
 
   return (
     <div className={styles.contentmenu}>
       <Title title={jsonData.title} cap={{ height: 10 }}/>
+
       {jsonData.page.map((p, idx) => {
-        return BuildPage(data[idx], value => { setDataIndex(idx, value) }, p, idx === page)
+        return <BuildPage
+          data={data[idx]}
+          onvaluechange={value => { setDataIndex(idx, value) }}
+          dataPage={p}
+          visible={idx === page}
+          key={idx} />
       })}
+
       <NavButton leftClick={() => { setPage(page - 1) }} rightClick={() => { setPage(page + 1) }} submitClick={() => { prop.onSubmit(JSON.stringify(data)) }}
       isFirstPage={page === 0} isLastPage={page === jsonData.page.length - 1}/>
     </div>
   )
 }
-function BuildPage (
-  data: any[],
-  onvaluechange: (value: string[]) => void,
-  dataPage: JsonFormPage,
-  visible: boolean): JSX.Element {
-  const [datas, setDatas] = useState(data ?? new Array<string>(dataPage.item.length))
-  const setDataIndex = (idx: number, value: string): void => {
+
+interface BuildPageProp {
+  data: any[]
+  onvaluechange: (value: any[]) => void
+  dataPage: JsonFormPage
+  visible: boolean
+}
+function BuildPage (prop: BuildPageProp): JSX.Element {
+  const [datas, setDatas] = useState(prop.data ?? new Array<any>(prop.dataPage.item.length))
+  const setDataIndex = (idx: number, value: any): void => {
     const newdatas = [...datas]
     newdatas[idx] = value
 
     setDatas(newdatas)
-    onvaluechange(datas)
+    prop.onvaluechange(datas)
   }
   return (
-    <FormPage visible={visible}>
-      {dataPage.item.map((i, idx) => {
-        console.log(i)
-        const itemProp: any = {
-          summary: i.text,
-          items: i.items,
-          value: datas[idx],
-          other: i.other,
-          onvaluechange: (value: string) => { setDataIndex(idx, value) }
-        }
-        if (idx === 0) {
-          itemProp.cap = { height: 48, text: dataPage.name }
-        }
+    <FormPage visible={prop.visible}>
+      {prop.dataPage.item.map((i, idx) => {
         switch (i.type) {
           case 'label':
-            return Label(itemProp)
+            return <Label summary={i.text} key={idx} cap={(idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined}/>
           case 'field':
-            return InputField(itemProp)
+            return <InputField summary={i.text} key={idx} cap={(idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined}
+              value={datas[idx]} onValuechange={(value: string | null) => { setDataIndex(idx, value) }}/>
           case 'radio':
-            return RadioMenu(itemProp)
+            return <RadioMenu summary={i.text} key={idx} cap={(idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined}
+              items={i.items ?? []} value={datas[idx]} onValuechange={(value: string | null) => { setDataIndex(idx, value) }}/>
           case 'box':
-            return CheckBox(itemProp)
+            return <CheckBox summary={i.text} key={idx} cap={(idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined}
+              items={i.items ?? []} value={datas[idx]} onValuechange={(value: string[] | null) => { setDataIndex(idx, value) }}/>
           default:
             throw new Error()
         }
