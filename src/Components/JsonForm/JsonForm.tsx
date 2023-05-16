@@ -75,10 +75,10 @@ function BuildPage (prop: BuildPageProp): JSX.Element {
               value={datas[idx]} onValuechange={(value: string | null) => { setDataIndex(idx, value) }}/>
           case 'radio':
             return <RadioMenu summary={i.text} key={idx} cap={(idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined}
-              items={i.items ?? []} value={datas[idx]} onValuechange={(value: string | null) => { setDataIndex(idx, value) }}/>
+              items={i.items ?? []} value={datas[idx]} onValuechange={(value: string | null) => { setDataIndex(idx, value) }} other={i.other}/>
           case 'box':
             return <CheckBox summary={i.text} key={idx} cap={(idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined}
-              items={i.items ?? []} value={datas[idx]} onValuechange={(value: string[] | null) => { setDataIndex(idx, value) }}/>
+              items={i.items ?? []} value={datas[idx]} onValuechange={(value: string[] | null) => { setDataIndex(idx, value) }} other={i.other}/>
           default:
             throw new Error()
         }
