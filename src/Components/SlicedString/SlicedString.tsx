@@ -5,7 +5,8 @@ interface SlicedStringProps {
 }
 
 function SlicedString (prop: SlicedStringProps): JSX.Element {
-  const split = prop.text.split('\\n')
+  console.log(prop.text)
+  const split = prop.text.split('\n')
   return (
   <span>
     {split.map((item, index) => {
