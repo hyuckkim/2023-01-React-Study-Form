@@ -8,14 +8,15 @@ import { RadioMenu } from '../RadioMenu'
 import { CheckBox } from '../CheckBox'
 import { FormPage } from '../FormPage'
 import { NavButton } from '../NavButton'
+import { type JsonFormPage, type JsonFormFile } from '@/Api'
 
 interface JsonFormProps {
-  json: string
+  json: JsonFormFile
   onSubmit: (value: string) => void
 }
 
 function JsonForm (prop: JsonFormProps): JSX.Element {
-  const jsonData: JsonFormFile = JSON.parse(prop.json)
+  const jsonData: JsonFormFile = prop.json
 
   const [page, setPage] = useState(0)
   const [data, setData] = useState<any[][]>(
@@ -86,23 +87,6 @@ function BuildPage (prop: BuildPageProp): JSX.Element {
       })}
     </FormPage>
   )
-}
-
-interface JsonFormFile {
-  title: string
-  page: JsonFormPage[]
-}
-
-interface JsonFormPage {
-  name: string
-  item: JsonFormItem[]
-}
-
-interface JsonFormItem {
-  type: 'label' | 'field' | 'radio' | 'box'
-  text: string
-  items?: string[]
-  other?: true
 }
 
 export default JsonForm
