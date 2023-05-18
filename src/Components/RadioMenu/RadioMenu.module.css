@@ -1,6 +1,8 @@
 .root {
     display: flex;
     flex-direction: column;
+    transition: 0.5s;
+    overflow: hidden
 }
 
 .root > * {

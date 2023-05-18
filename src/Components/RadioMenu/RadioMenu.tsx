@@ -39,10 +39,15 @@ function RadioMenu (prop: RadioMenuProps): JSX.Element {
     setSelected(s)
     toEtcSelected()()
   }
+  const summaryHeight = 41
+  const selectionHeight = 43
+  const resetSeletionHeight = 41
+  const heightWhenResetButtonHide = summaryHeight + selectionHeight * (prop.items.length + (prop.other === true ? 1 : 0))
+  const heightWhenResetButtonVisible = heightWhenResetButtonHide + resetSeletionHeight
 
   return (
   <Panel cap={prop.cap}>
-    <div className={styles.root}>
+    <div className={styles.root} style={{ height: selected != null ? heightWhenResetButtonVisible : heightWhenResetButtonHide }}>
       <div><SlicedString text={prop.summary} /></div>
 
       {prop.items.map(e =>
