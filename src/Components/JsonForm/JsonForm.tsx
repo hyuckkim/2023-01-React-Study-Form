@@ -67,17 +67,18 @@ function BuildPage (prop: BuildPageProp): JSX.Element {
   return (
     <FormPage visible={prop.visible}>
       {prop.dataPage.item.map((i, idx) => {
+        const cap = (idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined
         switch (i.type) {
           case 'label':
-            return <Label summary={i.text} key={idx} cap={(idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined}/>
+            return <Label summary={i.text} key={idx} cap={cap}/>
           case 'field':
-            return <InputField summary={i.text} key={idx} cap={(idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined}
+            return <InputField summary={i.text} key={idx} cap={cap}
               value={datas[idx]} onValuechange={(value: string | null) => { setDataIndex(idx, value) }}/>
           case 'radio':
-            return <RadioMenu summary={i.text} key={idx} cap={(idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined}
+            return <RadioMenu summary={i.text} key={idx} cap={cap}
               items={i.items ?? []} value={datas[idx]} onValuechange={(value: string | null) => { setDataIndex(idx, value) }} other={i.other}/>
           case 'box':
-            return <CheckBox summary={i.text} key={idx} cap={(idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined}
+            return <CheckBox summary={i.text} key={idx} cap={cap}
               items={i.items ?? []} value={datas[idx]} onValuechange={(value: string[] | null) => { setDataIndex(idx, value) }} other={i.other}/>
           default:
             throw new Error()
