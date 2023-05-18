@@ -29,9 +29,12 @@ function RadioMenu (prop: RadioMenuProps): JSX.Element {
     }
   }
   const toEtcSelected = () => () => {
-    setSelected(etcValue)
-    if (prop.onValuechange !== undefined) {
-      prop.onValuechange(etcValue)
+    console.log(etcValue)
+    if (etcValue !== '') {
+      setSelected(etcValue)
+      if (prop.onValuechange !== undefined) {
+        prop.onValuechange(etcValue)
+      }
     }
   }
   const etcValueChanged = (s: string): void => {
@@ -63,7 +66,7 @@ function RadioMenu (prop: RadioMenuProps): JSX.Element {
           checked={selected === etcValue}
           onClick={toEtcSelected()} readOnly/>
         <label className={styles.inputlabel} htmlFor={'기타_' + prop.summary}>기타:</label>
-        <input className={styles.etcinput} onChange={(e) => {
+        <input className={styles.etcinput} value={etcValue} onChange={(e) => {
           etcValueChanged(e.target.value)
         }}/>
       </div>}
