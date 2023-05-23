@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
 
-import { Panel, type PanelProps } from '@/Structure/Panel'
+import { Panel } from '@/Structure/Panel'
 import { SlicedString } from '../../Structure/SlicedString'
 
 import styles from './CheckBox.module.css'
+import { type ComponentValueProps } from '..'
 
-type CheckBoxProps = PanelProps & {
-  summary: string
+type CheckBoxProps = ComponentValueProps<string[]> & {
   items: string[]
-  value?: string[]
-  other?: true | boolean
-  onValuechange?: (value: string[] | null) => void
 }
 
 function CheckBox (prop: CheckBoxProps): JSX.Element {

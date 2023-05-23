@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
 
 import styles from './InputField.module.css'
-import { Panel, type PanelProps } from '@/Structure/Panel'
+import { Panel } from '@/Structure/Panel'
 import { SlicedString } from '../../Structure/SlicedString'
+import { type ComponentValueProps } from '..'
 
-type InputFieldProps = PanelProps & {
-  summary: string
-  value?: string | null
-  onValuechange?: (value: string | null) => void
-}
+type InputFieldProps = ComponentValueProps<string>
 
 function InputField (prop: InputFieldProps): JSX.Element {
   const [inputValue, setInputValue] = useState(prop.value ?? '')

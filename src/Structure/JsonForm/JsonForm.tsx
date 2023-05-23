@@ -70,19 +70,30 @@ function BuildPage (prop: BuildPageProp): JSX.Element {
   return (
     <FormPage visible={prop.visible}>
       {prop.dataPage.item.map((i, idx) => {
-        const cap = (idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined
+        const newProp = {
+          cap: (idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined,
+          summary: i.text,
+          key: idx
+        }
+        const getNewDataProp: <T,>() => { value: T, onValuechange: (value: T | null) => void } = <T,>() => {
+          return {
+            value: (datas[idx] as T),
+            onValuechange: (value: T | null) => { setDataIndex(idx, value) },
+            other: i.other
+          }
+        }
+        const newItemProp = {
+          items: i.items ?? []
+        }
         switch (i.type) {
           case 'label':
-            return <Label summary={i.text} key={idx} cap={cap}/>
+            return <Label {...newProp}/>
           case 'field':
-            return <InputField summary={i.text} key={idx} cap={cap}
-              value={datas[idx]} onValuechange={(value: string | null) => { setDataIndex(idx, value) }}/>
+            return <InputField {...newProp} {...getNewDataProp<string>()} />
           case 'radio':
-            return <RadioMenu summary={i.text} key={idx} cap={cap}
-              items={i.items ?? []} value={datas[idx]} onValuechange={(value: string | null) => { setDataIndex(idx, value) }} other={i.other}/>
+            return <RadioMenu {...newProp} {...getNewDataProp<string>()} {...newItemProp} />
           case 'box':
-            return <CheckBox summary={i.text} key={idx} cap={cap}
-              items={i.items ?? []} value={datas[idx]} onValuechange={(value: string[] | null) => { setDataIndex(idx, value) }} other={i.other}/>
+            return <CheckBox {...newProp} {...getNewDataProp<string[]>()} {...newItemProp} />
           default:
             throw new Error()
         }

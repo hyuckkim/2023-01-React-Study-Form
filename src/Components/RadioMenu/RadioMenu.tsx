@@ -1,19 +1,16 @@
 import React, { useState } from 'react'
 import styles from './RadioMenu.module.css'
-import { Panel, type PanelProps } from '@/Structure/Panel'
+import { Panel } from '@/Structure/Panel'
 import { SlicedString } from '../../Structure/SlicedString'
+import { type ComponentValueProps } from '..'
 
-type RadioMenuProps = PanelProps & {
-  summary: string
+type RadioMenuProps = ComponentValueProps<string> & {
   items: string[]
-  value?: string
-  other?: true | boolean
-  onValuechange?: (value: string | null) => void
 }
 
 function RadioMenu (prop: RadioMenuProps): JSX.Element {
   const [selected, setSelected] = useState<string | null>(prop.value ?? null)
-  const [etcValue, setEtcValue] = useState(!prop.items.includes(prop.value ?? '') ? prop.value ?? '' : '')
+  const [etcValue, setEtcValue] = useState(!(prop.items.includes(prop.value ?? '')) ? prop.value ?? '' : '')
   const reset = (): void => {
     setSelected(null)
 
