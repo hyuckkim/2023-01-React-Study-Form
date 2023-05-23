@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { JsonForm } from '@/Components'
+import { JsonForm } from '@/Structure'
 
 import styles from './MainPage.module.css'
 import { getMockJsonData } from '@/Api'

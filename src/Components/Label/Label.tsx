@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Panel, type PanelProps } from '../Panel'
-import { SlicedString } from '../SlicedString'
+import { Panel, type PanelProps } from '@/Structure/Panel'
+import { SlicedString } from '../../Structure/SlicedString'
 import styles from './Label.module.css'
 
 type LabelProps = PanelProps & {

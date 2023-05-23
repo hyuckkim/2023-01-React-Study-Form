@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 import styles from './InputField.module.css'
-import { Panel, type PanelProps } from '../Panel'
-import { SlicedString } from '../SlicedString'
+import { Panel, type PanelProps } from '@/Structure/Panel'
+import { SlicedString } from '../../Structure/SlicedString'
 
 type InputFieldProps = PanelProps & {
   summary: string

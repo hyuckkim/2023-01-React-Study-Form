@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 
 import styles from './JsonForm.module.css'
 import { Title } from '../Title'
-import { Label } from '../Label'
-import { InputField } from '../InputField'
-import { RadioMenu } from '../RadioMenu'
-import { CheckBox } from '../CheckBox'
 import { FormPage } from '../FormPage'
 import { NavButton } from '../NavButton'
+
+import { Label } from '@/Components/Label'
+import { InputField } from '@/Components/InputField'
+import { RadioMenu } from '@/Components/RadioMenu'
+import { CheckBox } from '@/Components/CheckBox'
 import { type JsonFormPage, type JsonFormFile } from '@/Api'
 
 interface JsonFormProps {
