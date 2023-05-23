@@ -22,13 +22,13 @@ function JsonForm (prop: JsonFormProps): JSX.Element {
   const jsonData: JsonFormFile = prop.json
 
   const [page, setPage] = useState(0)
-  const [data, setData] = useState<any[][]>(
-    jsonData.page.map(i => {
-      return new Array<any>(i.item.length)
-    })
+  const [data, setData] = useState<Record<string, Record<string, string | string[] | null>>>(
+    jsonData.page.reduce(
+      (acc, cur) => ({ ...acc, [cur.name]: cur.item.reduce((acc, cur) => ({ ...acc, [cur.name]: null }), {}) }),
+      {})
   )
-  const setDataIndex = (idx: number, value: string[]): void => {
-    const newdatas = [...data]
+  const setDataIndex = (idx: string, value: Record<string, string | string[] | null>): void => {
+    const newdatas = Object.assign(data)
     newdatas[idx] = value
 
     setData(newdatas)
@@ -40,8 +40,8 @@ function JsonForm (prop: JsonFormProps): JSX.Element {
 
       {jsonData.page.map((p, idx) => {
         return <BuildPage
-          data={data[idx]}
-          onvaluechange={value => { setDataIndex(idx, value) }}
+          data={data[p.name]}
+          onvaluechange={value => { setDataIndex(p.name, value) }}
           dataPage={p}
           visible={idx === page}
           key={idx} />
@@ -55,15 +55,15 @@ function JsonForm (prop: JsonFormProps): JSX.Element {
 }
 
 interface BuildPageProp {
-  data: any[]
-  onvaluechange: (value: any[]) => void
+  data: Record<string, string | string[] | null>
+  onvaluechange: (value: Record<string, string | string[] | null>) => void
   dataPage: JsonFormPage
   visible: boolean
 }
 function BuildPage (prop: BuildPageProp): JSX.Element {
   const [datas, setDatas] = useState(prop.data ?? new Array<any>(prop.dataPage.item.length))
-  const setDataIndex = (idx: number, value: any): void => {
-    const newdatas = [...datas]
+  const setDataIndex = (idx: string, value: any): void => {
+    const newdatas = Object.assign(datas)
     newdatas[idx] = value
 
     setDatas(newdatas)
@@ -73,14 +73,14 @@ function BuildPage (prop: BuildPageProp): JSX.Element {
     <FormPage visible={prop.visible}>
       {prop.dataPage.item.map((i, idx) => {
         const newProp: ComponentProps & { key: number } = {
-          cap: (idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined,
+          cap: (idx === 0) ? { height: 48, text: prop.dataPage.text } : undefined,
           text: i.text,
           key: idx
         }
         const getNewDataProp: <T,>() => { value: T, onValuechange: (value: T | null) => void } = <T,>() => {
           return {
             value: (datas[idx] as T),
-            onValuechange: (value: T | null) => { setDataIndex(idx, value) },
+            onValuechange: (value: T | null) => { setDataIndex(i.name, value) },
             other: i.other
           }
         }
