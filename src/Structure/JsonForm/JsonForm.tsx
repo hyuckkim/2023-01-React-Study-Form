@@ -5,11 +5,7 @@ import { Title } from '../Title'
 import { FormPage } from '../FormPage'
 import { NavButton } from '../NavButton'
 
-import { Label } from '@/Components/Label'
-import { InputField } from '@/Components/InputField'
-import { RadioMenu } from '@/Components/RadioMenu'
-import { CheckBox } from '@/Components/CheckBox'
-import { type ComponentProps } from '@/Components'
+import { Label, InputField, RadioMenu, CheckBox, type ComponentProps } from '@/Components'
 
 import { type JsonFormPage, type JsonFormFile } from '@/Api'
 
@@ -17,17 +13,18 @@ interface JsonFormProps {
   json: JsonFormFile
   onSubmit: (value: string) => void
 }
+type PageResult = Record<string, string | string[] | null>
 
 function JsonForm (prop: JsonFormProps): JSX.Element {
   const jsonData: JsonFormFile = prop.json
 
   const [page, setPage] = useState(0)
-  const [data, setData] = useState<Record<string, Record<string, string | string[] | null>>>(
+  const [data, setData] = useState<Record<string, PageResult>>(
     jsonData.page.reduce(
       (acc, cur) => ({ ...acc, [cur.name]: cur.item.reduce((acc, cur) => ({ ...acc, [cur.name]: null }), {}) }),
       {})
   )
-  const setDataIndex = (idx: string, value: Record<string, string | string[] | null>): void => {
+  const setDataIndex = (idx: string, value: PageResult): void => {
     const newdatas = Object.assign(data)
     newdatas[idx] = value
 
@@ -47,7 +44,10 @@ function JsonForm (prop: JsonFormProps): JSX.Element {
           key={idx} />
       })}
 
-      <NavButton leftClick={() => { setPage(page - 1) }} rightClick={() => { setPage(page + 1) }} submitClick={() => { prop.onSubmit(JSON.stringify(data)) }}
+      <NavButton
+        leftClick={() => { setPage(page - 1) }}
+        rightClick={() => { setPage(page + 1) }}
+        submitClick={() => { prop.onSubmit(JSON.stringify(data)) }}
       isFirstPage={page === 0} isLastPage={page === jsonData.page.length - 1}/>
       <div className='tinyinfo'>Form을 통해 비밀번호를 제출하세요.</div>
     </div>
@@ -55,14 +55,14 @@ function JsonForm (prop: JsonFormProps): JSX.Element {
 }
 
 interface BuildPageProp {
-  data: Record<string, string | string[] | null>
-  onvaluechange: (value: Record<string, string | string[] | null>) => void
+  data: PageResult
+  onvaluechange: (value: PageResult) => void
   dataPage: JsonFormPage
   visible: boolean
 }
 function BuildPage (prop: BuildPageProp): JSX.Element {
-  const [datas, setDatas] = useState(prop.data ?? new Array<any>(prop.dataPage.item.length))
-  const setDataIndex = (idx: string, value: any): void => {
+  const [datas, setDatas] = useState(prop.data)
+  const setDataIndex = <T,>(idx: string, value: T): void => {
     const newdatas = Object.assign(datas)
     newdatas[idx] = value
 
