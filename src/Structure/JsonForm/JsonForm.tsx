@@ -9,6 +9,8 @@ import { Label } from '@/Components/Label'
 import { InputField } from '@/Components/InputField'
 import { RadioMenu } from '@/Components/RadioMenu'
 import { CheckBox } from '@/Components/CheckBox'
+import { type ComponentProps } from '@/Components'
+
 import { type JsonFormPage, type JsonFormFile } from '@/Api'
 
 interface JsonFormProps {
@@ -70,9 +72,9 @@ function BuildPage (prop: BuildPageProp): JSX.Element {
   return (
     <FormPage visible={prop.visible}>
       {prop.dataPage.item.map((i, idx) => {
-        const newProp = {
+        const newProp: ComponentProps & { key: number } = {
           cap: (idx === 0) ? { height: 48, text: prop.dataPage.name } : undefined,
-          summary: i.text,
+          text: i.text,
           key: idx
         }
         const getNewDataProp: <T,>() => { value: T, onValuechange: (value: T | null) => void } = <T,>() => {

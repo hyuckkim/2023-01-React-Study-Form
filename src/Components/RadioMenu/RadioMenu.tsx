@@ -48,21 +48,21 @@ function RadioMenu (prop: RadioMenuProps): JSX.Element {
   return (
   <Panel cap={prop.cap}>
     <div className={styles.root} style={{ height: selected != null ? heightWhenResetButtonVisible : heightWhenResetButtonHide }}>
-      <div><SlicedString text={prop.summary} /></div>
+      <div><SlicedString text={prop.text} /></div>
 
       {prop.items.map(e =>
         <div key={e} className={styles.element}>
-          <input type="radio" id={e} className={styles.input} name={prop.summary}
+          <input type="radio" id={e} className={styles.input} name={prop.text}
             checked={selected != null && selected === e}
             onClick={toSetSelected(e)} readOnly/>
           <label className={styles.inputlabel} htmlFor={e}>{e}</label>
         </div>)}
 
       {prop.other === true && <div className={styles.element}>
-        <input type="radio" id={'기타_' + prop.summary} className={styles.input} name={prop.summary}
+        <input type="radio" id={'기타_' + prop.text} className={styles.input} name={prop.text}
           checked={selected === etcValue}
           onClick={toEtcSelected()} readOnly/>
-        <label className={styles.inputlabel} htmlFor={'기타_' + prop.summary}>기타:</label>
+        <label className={styles.inputlabel} htmlFor={'기타_' + prop.text}>기타:</label>
         <input className={styles.etcinput} value={etcValue} onChange={(e) => {
           etcValueChanged(e.target.value)
         }}/>

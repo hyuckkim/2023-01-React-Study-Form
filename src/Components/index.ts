@@ -5,7 +5,7 @@ export { CheckBox } from './CheckBox'
 
 export interface ComponentProps {
   cap?: { height: number, text?: string }
-  summary: string
+  text: string
 }
 
 export type ComponentValueProps<T> = ComponentProps & {

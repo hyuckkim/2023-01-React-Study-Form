@@ -11,7 +11,7 @@ function Label (prop: LabelProps): JSX.Element {
   return (
   <Panel cap={prop.cap}>
     <div className={styles.root}>
-      <SlicedString text={prop.summary} />
+      <SlicedString text={prop.text} />
     </div>
   </Panel>
   )

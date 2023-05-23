@@ -68,21 +68,21 @@ function CheckBox (prop: CheckBoxProps): JSX.Element {
   return (
   <Panel cap={prop.cap}>
     <div className={styles.root}>
-      <div><SlicedString text={prop.summary} /></div>
+      <div><SlicedString text={prop.text} /></div>
 
       {prop.items.map(e =>
       <div key={e} className={styles.element}>
-          <input type="checkbox" id={e} className={styles.input} name={prop.summary}
+          <input type="checkbox" id={e} className={styles.input} name={prop.text}
           checked={selected?.includes(e)}
           onClick={toSetSelected(e)} readOnly/>
           <label className={styles.inputlabel} htmlFor={e}>{e}</label>
       </div>)}
 
       {prop.other === true && <div className={styles.element}>
-          <input type="checkbox" id={'기타_' + prop.summary} className={styles.input} name={prop.summary}
+          <input type="checkbox" id={'기타_' + prop.text} className={styles.input} name={prop.text}
           checked={selected != null && etcValue !== '' && selected.includes(etcValue)}
           onClick={toEtcSelected(!etcSelected)} readOnly/>
-          <label className={styles.inputlabel} htmlFor={'기타_' + prop.summary}>기타:</label>
+          <label className={styles.inputlabel} htmlFor={'기타_' + prop.text}>기타:</label>
           <input className={styles.etcinput} value={etcValue} onChange={(e) => {
             etcValueChanged(e.target.value)
           }}/>

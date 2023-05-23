@@ -19,7 +19,7 @@ function InputField (prop: InputFieldProps): JSX.Element {
   return (
     <Panel cap={prop.cap}>
       <div className={styles.root}>
-        <div><SlicedString text={prop.summary}/></div>
+        <div><SlicedString text={prop.text}/></div>
         <div className={styles.inputcase}>
           <input className={styles.input} value={inputValue} placeholder='내 답변' onChange={(e) => {
             toSetValue(e.target.value)
