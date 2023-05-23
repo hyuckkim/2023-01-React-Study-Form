@@ -3,12 +3,12 @@ export { InputField } from './InputField'
 export { Label } from './Label'
 export { CheckBox } from './CheckBox'
 
-export interface ComponentProps {
+export interface FormComponentProps {
   cap?: { height: number, text?: string }
   text: string
 }
 
-export type ComponentValueProps<T> = ComponentProps & {
+export type ComponentValueProps<T> = FormComponentProps & {
   value?: T
   onValuechange?: (value: T | null) => void
   other?: true | boolean

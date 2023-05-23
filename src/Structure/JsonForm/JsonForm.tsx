@@ -5,7 +5,7 @@ import { Title } from '../Title'
 import { FormPage } from '../FormPage'
 import { NavButton } from '../NavButton'
 
-import { Label, InputField, RadioMenu, CheckBox, type ComponentProps } from '@/Components'
+import { Label, InputField, RadioMenu, CheckBox, type FormComponentProps } from '@/Components'
 
 import { type JsonFormPage, type JsonFormFile } from '@/Api'
 
@@ -72,7 +72,7 @@ function BuildPage (prop: BuildPageProp): JSX.Element {
   return (
     <FormPage visible={prop.visible}>
       {prop.dataPage.item.map((i, idx) => {
-        const newProp: ComponentProps & { key: number } = {
+        const newProp: FormComponentProps & { key: number } = {
           cap: (idx === 0) ? { height: 48, text: prop.dataPage.text } : undefined,
           text: i.text,
           key: idx

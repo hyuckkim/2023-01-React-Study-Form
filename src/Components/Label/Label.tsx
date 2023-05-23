@@ -3,9 +3,9 @@ import React from 'react'
 import { Panel } from '@/Structure/Panel'
 import { SlicedString } from '../../Structure/SlicedString'
 import styles from './Label.module.css'
-import { type ComponentProps } from '..'
+import { type FormComponentProps } from '..'
 
-type LabelProps = ComponentProps
+type LabelProps = FormComponentProps
 
 function Label (prop: LabelProps): JSX.Element {
   return (
