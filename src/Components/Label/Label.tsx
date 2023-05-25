@@ -9,11 +9,11 @@ type LabelProps = FormComponentProps
 
 function Label (prop: LabelProps): JSX.Element {
   return (
-  <Panel cap={prop.cap}>
-    <div className={styles.root}>
-      <SlicedString text={prop.text} />
-    </div>
-  </Panel>
+    <Panel cap={prop.cap}>
+      <div className={styles.root}>
+        <SlicedString text={prop.text} />
+      </div>
+    </Panel>
   )
 }
 

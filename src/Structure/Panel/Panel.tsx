@@ -10,12 +10,12 @@ export interface PanelProps {
 
 function Panel (prop: PanelProps): JSX.Element {
   return (
-  <div className={styles.panel}>
-    {(prop.cap != null) && <BlueCap height={prop.cap.height} name={prop.cap.text}/>}
-    <div className={styles.inner}>
-      {prop.children}
+    <div className={styles.panel}>
+      {(prop.cap != null) && <BlueCap height={prop.cap.height} name={prop.cap.text}/>}
+      <div className={styles.inner}>
+        {prop.children}
+      </div>
     </div>
-  </div>
   )
 }
 

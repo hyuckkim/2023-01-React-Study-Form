@@ -9,11 +9,11 @@ interface BlueCapProps {
 
 function BlueCap (prop: BlueCapProps): JSX.Element {
   return (
-  <div className={styles.cap} style={{ height: prop.height }}>
-    {(prop.name != null) &&
-    <span className={styles.text}>{prop.name}</span>
-    }
-  </div>
+    <div className={styles.cap} style={{ height: prop.height }}>
+      {(prop.name != null) &&
+      <span className={styles.text}>{prop.name}</span>
+      }
+    </div>
   )
 }
 

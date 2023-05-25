@@ -41,14 +41,16 @@ function JsonForm (prop: JsonFormProps): JSX.Element {
           onvaluechange={value => { setDataIndex(p.name, value) }}
           dataPage={p}
           visible={idx === page}
-          key={idx} />
+          key={idx}
+        />
       })}
 
       <NavButton
         leftClick={() => { setPage(page - 1) }}
         rightClick={() => { setPage(page + 1) }}
         submitClick={() => { prop.onSubmit(JSON.stringify(data)) }}
-      isFirstPage={page === 0} isLastPage={page === jsonData.page.length - 1}/>
+        isFirstPage={page === 0}
+        isLastPage={page === jsonData.page.length - 1}/>
       <div className='tinyinfo'>Form을 통해 비밀번호를 제출하세요.</div>
     </div>
   )

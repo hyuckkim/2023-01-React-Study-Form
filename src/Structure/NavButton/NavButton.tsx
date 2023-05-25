@@ -16,10 +16,10 @@ function NavButton (prop: NavButtonProps): JSX.Element {
     ? <button onClick={prop.submitClick} className={styles.specialbutton}>제출</button>
     : <button onClick={prop.rightClick} className={styles.button}>다음</button>
   return (
-  <div>
-    {leftButton}
-    {rightButton}
-  </div>
+    <div>
+      {leftButton}
+      {rightButton}
+    </div>
   )
 }
 
